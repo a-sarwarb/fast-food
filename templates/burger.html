@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Фаст-Фуд{% endblock title %}
+
+{% block content %}
+
+<div class="card">
+    {% for foods in object_list %}
+ <div class="row justify-content-center">
+
+    {% if foods.category == 'Burger' %}
+    <div class="col-5">
+        {% if foods.photo %}
+      <img src="{{ foods.photo.url }}" class="card-img-top" alt="{{ element.name }}"/>
+         {% endif %}
+    </div>
+    <div class="col-4">
+      <h5 class="card-title">{{ foods.name }}</h5>
+      <p class="card-text">{{ foods.price }}$</p>
+      <a href="{% url 'foods_detail' foods.pk %}" class="btn btn-danger">Посмотреть</a>
+    </div>
+   {% endif %}
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock content %}
+

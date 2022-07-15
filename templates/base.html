@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<style>
+.container-fluid {
+  background-color: #8B0000;
+}
+.offcanvas-body {
+  background-color: #8B0000;
+}
+.container-fluid button {
+  background: #FFFFFF;
+}
+,container-fluid button:focus,
+button:active {
+  outline: none;
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 500%;
+}
+.card img {
+    height: 400px;
+    width: 400px;
+    background-color: #F08080;
+}
+<!--div {-->
+<!--   background-color: #F08080;-->
+<!--}-->
+
+container {
+    background-color: dark;
+}
+
+.container-fluid {
+    background-color: #8B0000;
+}
+footer {
+    background-color: #8B0000;
+}
+
+</style>
+<body>
+
+<nav class="navbar bg-light fixed-top">
+  <div class="container-fluid">
+
+    <h1><a class="text-center text-white fs-1 fst-italic" href="{% url 'home' %}">BigFooD</a></h1>
+    <a class="nav-link active text-white fst-italic" aria-current="page" href="{% url 'burger' %}">Бургеры</a>
+    <a class="nav-link active text-white fst-italic" aria-current="page" href="{% url 'drink' %}">Напитки</a>
+    <a class="nav-link active text-white fst-italic" aria-current="page" href="{% url 'cake' %}">Десерт</a>
+
+<div class="btn-group">
+  {% if user.is_authenticated %}
+  <button class="btn btn-danger btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <strong><a class="text-black">{{ user.username }}</a></strong>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item fst-italic" href="{% url 'logout' %}">Выйти</a></li>
+    <li><a class="dropdown-item fst-italic" href="{% url 'profile' %}">Профиль</a></li>
+    <li><a class="dropdown-item fst-italic" href="{% url 'password_change' %}">Изменить пароль</a></li>
+  </ul>
+  {% else %}
+    <button class="btn btn-danger btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <strong><a class="text-black">Профиль</a></strong>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item fst-italic" href="{% url 'login' %}">Войти</a></li>
+    <li><a class="dropdown-item fst-italic" href="{% url 'signup' %}">Регистрация</a></li>
+  </ul>
+  {% endif %}
+</div>
+
+
+<!--    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">-->
+<!--      <span class="navbar-toggler-icon"></span>-->
+<!--    </button>-->
+
+<!--    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">-->
+<!--      <div class="offcanvas-header">-->
+<!--        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5>-->
+<!--        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>-->
+<!--      </div>-->
+
+<!--      <div class="offcanvas-body">-->
+<!--        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">-->
+<!--          <li class="nav-item">-->
+<!--            <a class="nav-link active fw-bold" style="color:#FFFFFF" aria-current="page" href="{% url 'home' %}">Главная</a>-->
+<!--          </li>-->
+<!--          <li class="nav-item">-->
+<!--            <a class="nav-link fw-bold" style="color:#FFFFFF" href="{% url 'foods_list' %}">Меню</a>-->
+<!--          </li>-->
+<!--          {% if user.is_authenticated %}-->
+<!--          <li class="nav-item dropdown">-->
+<!--            <a class="nav-link dropdown-toggle fw-bold" style="color:#FFFFFF" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--              {{ user.username }}-->
+<!--            </a>-->
+<!--            <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">-->
+<!--              <li><a class="dropdown-item fst-italic" href="{% url 'logout' %}">Выйти</a></li>-->
+<!--            </ul>-->
+<!--          </li>-->
+<!--          {% else %}-->
+<!--          <li class="nav-item dropdown">-->
+<!--            <a class="nav-link dropdown-toggle fw-bold" style="color:#FFFFFF" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--              Профиль-->
+<!--            </a>-->
+<!--            <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">-->
+<!--              <li><a class="dropdown-item fst-italic" href="{% url 'signup' %}">Регистрация</a></li>-->
+<!--              <li><a class="dropdown-item fst-italic" href="{% url 'login' %}">Войти</a></li>-->
+
+<!--            </ul>-->
+<!--          </li>-->
+<!--          {% endif %}-->
+
+<!--         </ul>-->
+<form action="{% url 'search_result' %}" method="get">
+  <input name="q" type="text" placeholder="Search...">
+</form>
+
+
+
+</nav>
+
+<hr>
+<!--<img src="https://st2.depositphotos.com/1000339/5752/i/600/depositphotos_57527967-stock-photo-burger-and-french-fries.jpg" class="rounded float-start" alt="first">-->
+<!--<img src="https://cdn.pixabay.com/photo/2022/05/25/21/28/burger-7221436__340.jpg" class="rounded float-start" alt="first">-->
+<!--&lt;!&ndash;<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4lfo6U90_fHPAd5go9tjkUsn8Z0ZQ2nqhGA&usqp=CAU" class="rounded mx-auto d-block" alt="second">&ndash;&gt;-->
+<!--<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4lfo6U90_fHPAd5go9tjkUsn8Z0ZQ2nqhGA&usqp=CAU" class="rounded float-end" alt="third">-->
+<!--<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4lfo6U90_fHPAd5go9tjkUsn8Z0ZQ2nqhGA&usqp=CAU" class="rounded float-end" alt="third">-->
+<main>
+    {% block content %}
+    {% endblock content %}
+</main>
+<br>
+<!--<footer class="bg-light text-center text-lg-start">-->
+<!--  &lt;!&ndash; Copyright &ndash;&gt;-->
+<!--  <div class="text-center p-3 text-white" style="background-color: #8B0000;">-->
+<!--    Связь:-->
+<!--    <a class="text-white" href="https://mdbootstrap.com/">+99897777727</a>-->
+<!--  </div>-->
+<!--  &lt;!&ndash; Copyright &ndash;&gt;-->
+<!--</footer>-->
+
+<!-- Footer -->
+<footer class="text-center text-lg-start text-muted">
+  <!-- Section: Social media -->
+  <section
+    class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"
+  >
+    <!-- Left -->
+    <div class="me-5 d-none d-lg-block">
+      <span class="text-white"></span>
+    </div>
+    <!-- Left -->
+
+    <!-- Right -->
+    <!-- Right -->
+  </section>
+  <!-- Section: Social media -->
+
+  <!-- Section: Links  -->
+  <section class="">
+    <div class="container text-center text-md-start mt-5">
+      <!-- Grid row -->
+      <div class="row mt-3">
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+          <!-- Content -->
+          <h6 class="text-uppercase fw-bold mb-4 text-white">
+            <i class="fas fa-gem me-3 "></i>BigFood
+          </h6>
+          <p class="text-white">
+            Here you can use rows and columns to organize your footer content. Lorem ipsum
+            dolor sit amet, consectetur adipisicing elit.
+          </p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4 text-white">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            Продукты
+          </h6>
+          <p>
+            <a href="{% url 'burger' %}" class="text-reset">Бургеры</a>
+          </p>
+          <p>
+            <a href="{% url 'drink' %}" class="text-reset">Напитки</a>
+          </p>
+          <p>
+            <a href="{% url 'cake' %}" class="text-reset">Десерт</a>
+          </p>
+
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 text-white">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            Контакты
+          </h6>
+          <p><i class="fas fa-home me-3"></i> Узбекистан Хорезмская область</p>
+          <p>
+            <i class="fas fa-envelope me-3"></i>
+            khorezmbigfood@gmail.com
+          </p>
+          <p><i class="fas fa-phone me-3"></i> + 99890 234 567 88</p>
+          <p><i class="fas fa-print me-3"></i> + 99891 234 567 89</p>
+        </div>
+        <!-- Grid column -->
+      </div>
+      <!-- Grid row -->
+    </div>
+  </section>
+  <!-- Section: Links  -->
+
+  <!-- Copyright -->
+  <div class="text-center p-4 text-white" style="background-color: rgba(0, 0, 0, 0.05);">
+    © BigFood's:
+    <a class="text-reset fw-bold text-white" href="{% url 'home' %}">BigFood.com</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
+</body>
+</html>

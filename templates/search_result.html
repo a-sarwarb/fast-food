@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Search Results</h1>
+
+{% for foods in object_list %}
+<div class="card" style="width: 18rem;">
+  <img src="{{ foods.photo.url }}" class="card-img-top" alt="{{ foods.name }}">
+  <div class="card-body">
+    <h5 class="card-title">{{ foods.name }}</h5>
+
+    <a href="{% url 'home' %}" class="btn btn-danger">Главная</a>
+  </div>
+</div>
+{% endfor %}
+
+{% endblock content %}

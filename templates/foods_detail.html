@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Еда{% endblock title %}
+
+{% block content %}
+<div class="card">
+    {% if foods.photo %}
+  <img class="card-img-top" src="{{ foods.photo.url }}" alt="{{ foods.name }}">
+    {% endif %}
+    <div class="card-body">
+    <h4 class="card-title">{{ foods.name }}</h4>
+    <p class="card-text">{{ foods.category }}</p>
+    <a href="#" class="btn btn-danger">Заказать</a>
+  </div>
+{% endblock content %}
